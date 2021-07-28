@@ -1,6 +1,6 @@
 const Navbar = ({noOfCounter}) => {
+  console.log('Navbar - render')
   return (  
-    
     <nav className="navbar navbar-light bg-light">
       <a href="https://getbootstrap.com" className="navbar-brand">
       Navbar <span className="badge rounded-pill bg-primary">{noOfCounter}</span>

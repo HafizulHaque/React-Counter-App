@@ -13,6 +13,25 @@ class App extends Component {
     ]
   }
 
+  constructor(){
+    super()
+    console.log('App - constructor')
+  }
+
+  componentDidMount(){
+    console.log('App - mount')
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    console.log('App - updated')
+    console.log('prevProps', prevProps)
+    console.log('prevState', prevState)
+  }
+
+  componentWillUnmount(){
+    console.log('App - unmount')
+  }
+
   handleDelete = (id) => {
     let counters = this.state.counters.filter(c => c.id !== id)
     this.setState({
@@ -29,6 +48,15 @@ class App extends Component {
     })
   }
 
+  handleDecrease = (counter) => {
+    const counters = [...this.state.counters]
+    const index = counters.indexOf(counter)
+    counters[index].value--
+    this.setState({
+      counters
+    })
+  }
+
   handleReset = () => {
     let counters = this.state.counters.map(c => {
       c.value = 0
@@ -40,6 +68,7 @@ class App extends Component {
   }
 
   render() { 
+    console.log('App - render')
     const {counters} = this.state
     return ( 
       <>
@@ -47,6 +76,7 @@ class App extends Component {
         <main className="container">
           <Counters 
             onIncrease = {this.handleIncrease}
+            onDecrease = {this.handleDecrease}
             onDelete = {this.handleDelete}
             onReset = {this.handleReset}
             counters={counters}/>
